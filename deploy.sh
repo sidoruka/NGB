@@ -52,16 +52,16 @@ echo -e ${DEMO_KEY} > demo.pem
 sudo chmod 600 demo.pem
 sudo rsync -rave "ssh -o StrictHostKeyChecking=no -i demo.pem" dist/* ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}/${NGB_VERSION}
 sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \
-"cd ${DEMO_PATH};" \
-"rm -rf ${NGB_VERSION}/docs;" \
-"mkdir ${NGB_VERSION}/docs;" \
-"tar -zxf ${NGB_VERSION}/${DOCS_VERSION} -C ${NGB_VERSION}/docs;" \
-"rm -rf latest;" \
-"cp -rf ${NGB_VERSION} latest;" \
-"cd latest;" \
-"mv ${JAR_VERSION} ${JAR_LATEST};" \
-"mv ${WAR_VERSION} ${WAR_LATEST};" \
-"mv ${DOCS_VERSION} ${DOCS_LATEST};" \
+"cd ${DEMO_PATH} &&" \
+"rm -rf ${NGB_VERSION}/docs &&" \
+"mkdir ${NGB_VERSION}/docs &&" \
+"tar -zxf ${NGB_VERSION}/${DOCS_VERSION} -C ${NGB_VERSION}/docs &&" \
+"rm -rf latest &&" \
+"cp -rf ${NGB_VERSION} latest &&" \
+"cd latest &&" \
+"mv ${JAR_VERSION} ${JAR_LATEST} &&" \
+"mv ${WAR_VERSION} ${WAR_LATEST} &&" \
+"mv ${DOCS_VERSION} ${DOCS_LATEST} &&" \
 "mv ${CLI_VERSION} ${CLI_LATEST}"
 
 # Demo server - docker
