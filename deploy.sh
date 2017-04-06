@@ -15,6 +15,8 @@ DEMO_LATEST=${CORE_LATEST}-demo
 docker tag ngb:latest ${CORE_REL}
 docker tag ngb:latest ${CORE_LATEST}
 
+# TODO: build demo image
+
 docker login -p ${DOCKERHUB_PASS} -u ${DOCKERHUB_LOGIN}
 
 echo "Pushing ${CORE_REL}"
