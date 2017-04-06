@@ -11,7 +11,10 @@ DEMO_LATEST=${CORE_LATEST}-demo
 docker tag ngb:latest ${CORE_REL}
 docker tag ngb:latest ${CORE_LATEST}
 
-docker login -e ${DOCKERHUB_EMAIL} -p ${DOCKERHUB_PASS} -u ${DOCKERHUB_LOGIN}
+docker login -p ${DOCKERHUB_PASS} -u ${DOCKERHUB_LOGIN}
 
+echo Pushing ${CORE_REL} to Dockerhub
 docker push ${CORE_REL}
+
+echo Pushing ${CORE_LATEST} to Dockerhub
 docker push ${CORE_LATEST}
