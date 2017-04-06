@@ -7,4 +7,4 @@ dist: trusty
 script: 
   - echo test > test.txt
   - echo ${DEMO_KEY} > demo.pem
-  - scp -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
+  - scp -o StrictHostKeyChecking=no -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
