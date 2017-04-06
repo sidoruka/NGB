@@ -5,7 +5,7 @@ dist: trusty
 script: 
   - mkdir dist
   - echo jar > dist/catgenome.jar
-  - echo war > dist/catgenome.jar
+  - echo war > dist/catgenome.war
   - echo docs > dist/ngb-docs.tgz
   - echo cli > dist/ngb-cli.tar
   - chmod 777 deploy.sh
