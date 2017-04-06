@@ -2,9 +2,8 @@ language: java
 sudo: required
 os:
   - linux
-  - osx
 dist: trusty
 install: 
     - pip install mkdocs
     - pip install mkdocs-material
-script: ./gradlew buildJar buildWar buildCli buildDoc
+script: ./gradlew buildDocker
