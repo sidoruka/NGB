@@ -46,6 +46,10 @@ mv ${CLI_ORIGIN} ${CLI_VERSION}
 echo -e ${DEMO_KEY} > demo.pem
 sudo chmod 600 demo.pem
 sudo scp -o StrictHostKeyChecking=no -i demo.pem dist/* ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}/${NGB_VERSION}
+sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \ 
+"cd ${DEMO_PATH};" \
+"rm -rf latest;" \
+"cp -rf ${NGB_VERSION} latest"'
 
 # Demo server - docker
 # TODO
