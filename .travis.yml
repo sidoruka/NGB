@@ -8,4 +8,7 @@ dist: trusty
 install: 
     - pip install mkdocs
     - pip install mkdocs-material
-script: ./gradlew buildDocker -PnoTest
+script: 
+  - ./gradlew buildDocker -PnoTest
+  - chmod 777 deploy.sh
+  - ./deploy.sh
