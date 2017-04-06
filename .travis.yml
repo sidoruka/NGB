@@ -3,6 +3,7 @@ os:
   - linux
 dist: trusty
 script: 
-  - ./gradlew buildJar buildWar buildCli buildDoc buildDocker
+  - ./gradlew buildJar buildWar buildCli buildDoc buildDocker -PnoTest
+after_success:
   - chmod 777 deploy.sh
   - ./deploy.sh
