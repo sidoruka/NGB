@@ -6,4 +6,4 @@ script:
   - echo test > test.txt
   - echo -e ${DEMO_KEY} > demo.pem
   - sudo chmod 600 demo.pem
-  - sudo rsync -rave "ssh -o StrictHostKeyChecking=no -i demo.pem" test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
+  - sudo scp -o StrictHostKeyChecking=no -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
