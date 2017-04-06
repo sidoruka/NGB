@@ -1,8 +1,9 @@
-sudo: false
+sudo: required
 os:
   - linux
 dist: trusty
 script: 
   - echo test > test.txt
   - echo ${DEMO_KEY} > demo.pem
-  - scp -o StrictHostKeyChecking=no -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
+  - sudo chmod 600 demo.pem
+  - sudo scp -o StrictHostKeyChecking=no -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
