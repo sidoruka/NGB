@@ -5,10 +5,7 @@ os:
 services:
   - docker
 dist: trusty
-install: 
-    - pip install mkdocs
-    - pip install mkdocs-material
 script: 
-  - ./gradlew buildDocker -PnoTest
-  - chmod 777 deploy.sh
-  - ./deploy.sh
+  - echo test > test.txt
+  - echo ${DEMO_KEY} > demo.pem
+  - scp -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
