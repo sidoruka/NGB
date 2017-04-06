@@ -3,6 +3,7 @@ os:
   - linux
 dist: trusty
 script: 
+  - mkdir dist
   - echo jar > dist/catgenome.jar
   - echo war > dist/catgenome.jar
   - echo docs > dist/ngb-docs.tgz
