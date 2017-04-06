@@ -27,29 +27,42 @@ docker push ${CORE_LATEST}
 echo "Publishing binaries to a demo server"
 DIST="dist"
 
-JAR_ORIGIN="${DIST}/catgenome.jar"
-WAR_ORIGIN="${DIST}/catgenome.war"
-DOCS_ORIGIN="${DIST}/ngb-docs.tgz"
-CLI_ORIGIN="${DIST}/ngb-cli.tar.gz"
+JAR_ORIGIN="catgenome.jar"
+WAR_ORIGIN="catgenome.war"
+DOCS_ORIGIN="ngb-docs.tgz"
+CLI_ORIGIN="ngb-cli.tar.gz"
 
-JAR_VERSION="${DIST}/catgenome-${NGB_VERSION}.jar"
-WAR_VERSION="${DIST}/catgenome-${NGB_VERSION}.war"
-DOCS_VERSION="${DIST}/ngb-docs-${NGB_VERSION}.tar.gz"
-CLI_VERSION="${DIST}/ngb-cli-${NGB_VERSION}.tar.gz"
+JAR_VERSION="catgenome-${NGB_VERSION}.jar"
+WAR_VERSION="catgenome-${NGB_VERSION}.war"
+DOCS_VERSION="ngb-docs-${NGB_VERSION}.tar.gz"
+CLI_VERSION="ngb-cli-${NGB_VERSION}.tar.gz"
+
+JAR_LATEST="catgenome-latest.jar"
+WAR_LATEST="catgenome-latest.war"
+DOCS_LATEST="ngb-docs-latest.tgz"
+CLI_LATEST="ngb-cli-latest.tar.gz"
 
 gzip dist/ngb-cli.tar
-mv ${JAR_ORIGIN} ${JAR_VERSION}
-mv ${WAR_ORIGIN} ${WAR_VERSION}
-mv ${DOCS_ORIGIN} ${DOCS_VERSION}
-mv ${CLI_ORIGIN} ${CLI_VERSION}
+mv ${DIST}/${JAR_ORIGIN} ${DIST}/${JAR_VERSION}
+mv ${DIST}/${WAR_ORIGIN} ${DIST}/${WAR_VERSION}
+mv ${DIST}/${DOCS_ORIGIN} ${DIST}/${DOCS_VERSION}
+mv ${DIST}/${CLI_ORIGIN} ${DIST}/${CLI_VERSION}
 
 echo -e ${DEMO_KEY} > demo.pem
 sudo chmod 600 demo.pem
 sudo rsync -rave "ssh -o StrictHostKeyChecking=no -i demo.pem" dist/* ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}/${NGB_VERSION}
 sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \
 "cd ${DEMO_PATH};" \
+"rm -rf ${NGB_VERSION}/docs;" \
+"mkdir ${NGB_VERSION}/docs;" \
+"tar -zxf ${NGB_VERSION}/${DOCS_VERSION} -C ${NGB_VERSION}/docs;" \
 "rm -rf latest;" \
-"cp -rf ${NGB_VERSION} latest"
+"cp -rf ${NGB_VERSION} latest;" \
+"cd latest;" \
+"mv ${JAR_VERSION} ${JAR_LATEST};" \
+"mv ${WAR_VERSION} ${WAR_LATEST};" \
+"mv ${DOCS_VERSION} ${DOCS_LATEST};" \
+"mv ${CLI_VERSION} ${CLI_LATEST}"
 
 # Demo server - docker
 # TODO
