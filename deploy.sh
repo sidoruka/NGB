@@ -39,7 +39,7 @@ CLI_VERSION="ngb-cli-${NGB_VERSION}.tar.gz"
 
 JAR_LATEST="catgenome-latest.jar"
 WAR_LATEST="catgenome-latest.war"
-DOCS_LATEST="ngb-docs-latest.tgz"
+DOCS_LATEST="ngb-docs-latest.tar.gz"
 CLI_LATEST="ngb-cli-latest.tar.gz"
 
 gzip dist/ngb-cli.tar
