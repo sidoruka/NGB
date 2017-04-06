@@ -3,7 +3,9 @@ os:
   - linux
 dist: trusty
 script: 
-  - echo test > test.txt
-  - echo -e ${DEMO_KEY} > demo.pem
-  - sudo chmod 600 demo.pem
-  - sudo scp -o StrictHostKeyChecking=no -i demo.pem test.txt ${DEMO_USER}@${DEMO_SRV}:${DEMO_PATH}
+  - echo jar > dist/catgenome.jar
+  - echo war > dist/catgenome.jar
+  - echo docs > dist/ngb-docs.tgz
+  - echo cli > dist/ngb-cli.tar
+  - chmod 777 deploy.sh
+  - ./deploy.sh
