@@ -20,15 +20,17 @@ NGB_VERSION=$(./gradlew :printVersion |  grep "Project version is " | sed 's/^.*
 #docker push ${CORE_LATEST}
 
 # Publish binaries to demo server
-JAR_ORIGIN='dist/catgenome.jar'
-WAR_ORIGIN='dist/catgenome.war'
-DOCS_ORIGIN='dist/ngb-docs.tgz'
-CLI_ORIGIN='dist/ngb-cli.tar.gz'
+DIST="dist"
 
-JAR_VERSION='dist/catgenome-${NGB_VERSION}.jar'
-WAR_VERSION='dist/catgenome-${NGB_VERSION}.war'
-DOCS_VERSION='dist/ngb-docs-${NGB_VERSION}.tar.gz'
-CLI_VERSION='dist/ngb-cli-${NGB_VERSION}.tar.gz'
+JAR_ORIGIN="${DIST}/catgenome.jar"
+WAR_ORIGIN="${DIST}/catgenome.war"
+DOCS_ORIGIN="${DIST}/ngb-docs.tgz"
+CLI_ORIGIN="${DIST}/ngb-cli.tar.gz"
+
+JAR_VERSION="${DIST}/catgenome-${NGB_VERSION}.jar"
+WAR_VERSION="${DIST}/catgenome-${NGB_VERSION}.war"
+DOCS_VERSION="${DIST}/ngb-docs-${NGB_VERSION}.tar.gz"
+CLI_VERSION="${DIST}/ngb-cli-${NGB_VERSION}.tar.gz"
 
 gzip dist/ngb-cli.tar
 mv ${JAR_ORIGIN} ${JAR_VERSION}
