@@ -65,4 +65,9 @@ sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \
 "mv ${CLI_VERSION} ${CLI_LATEST}"
 
 # Demo server - docker
-# TODO
+#echo "Removing all running dockers and starting ${DEMO_REL}"
+#sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \ 
+#"docker stop $(docker ps -a -q);" \
+#"docker rm $(docker ps -a -q);" \
+#"docker rmi $(docker images -q);" \
+#"docker run -p 8080:8080 -d --name ngbdemo ${DEMO_REL}"
