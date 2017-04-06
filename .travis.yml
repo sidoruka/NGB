@@ -1,8 +1,6 @@
 sudo: false
 os:
   - linux
-services:
-  - docker
 dist: trusty
 script: 
   - echo test > test.txt
