@@ -1,3 +1,8 @@
+until $(curl --output /dev/null --silent --head --fail http://localhost:8080/catgenome); do
+    printf '.'
+    sleep 5
+done
+
 cd /opt
 mkdir data
 cd data/
