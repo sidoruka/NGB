@@ -17,7 +17,7 @@ wget -nv http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data.tar.gz
 gzip -d Homo_sapiens.GRCh38.fa.gz
 gzip -d dmel-all-chromosome-r6.06.fasta.gz
 
-tar -zxvf ngb_demo_data.tar.gz
+tar -zxf ngb_demo_data.tar.gz
 rm ngb_demo_data.tar.gz
 
 ngb reg_ref /opt/data/Homo_sapiens.GRCh38.fa --name GRCh38
