@@ -9,4 +9,5 @@ script:
   - ./gradlew buildJar buildWar buildCli buildDoc buildDocker -PnoTest
 after_success:
   - chmod 777 deploy.sh
+  - chmod 777 init_demo_data.sh
   - ./deploy.sh
