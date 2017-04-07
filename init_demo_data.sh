@@ -8,11 +8,11 @@ cd /opt
 mkdir data
 cd data/
 
-wget http://ngb.opensource.epam.com/distr/data/genome/grch38/Homo_sapiens.GRCh38.gtf.gz
-wget http://ngb.opensource.epam.com/distr/data/genome/grch38/Homo_sapiens.GRCh38.fa.gz
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz
-wget http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.gz
-wget http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data.tar.gz
+wget -nv http://ngb.opensource.epam.com/distr/data/genome/grch38/Homo_sapiens.GRCh38.gtf.gz
+wget -nv http://ngb.opensource.epam.com/distr/data/genome/grch38/Homo_sapiens.GRCh38.fa.gz
+wget -nv http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-r6.06.sorted.gtf.gz
+wget -nv http://ngb.opensource.epam.com/distr/data/genome/dm6/dmel-all-chromosome-r6.06.fasta.gz
+wget -nv http://ngb.opensource.epam.com/distr/data/demo/ngb_demo_data.tar.gz
 
 gzip -d Homo_sapiens.GRCh38.fa.gz
 gzip -d dmel-all-chromosome-r6.06.fasta.gz
