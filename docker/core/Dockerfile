@@ -12,19 +12,19 @@ RUN apt-get -y update && \
 
 #Install tomcat 8
 RUN wget -q http://apache-mirror.rbc.ru/pub/apache/tomcat/tomcat-8/v8.0.43/bin/apache-tomcat-8.0.43.tar.gz && \
-        tar -xvf apache-tomcat-8.0.43.tar.gz && \
+        tar -xf apache-tomcat-8.0.43.tar.gz && \
         rm apache-tomcat*.tar.gz && \
         mv apache-tomcat* ${CATALINA_HOME}
 
 #Install NGB binaries
 COPY catgenome.war ${CATALINA_HOME}/webapps/catgenome/
 RUN	cd ${CATALINA_HOME}/webapps/catgenome && \
-		jar xvf catgenome.war
+		jar xf catgenome.war
 
 #Install NGB CLI 
 COPY ngb-cli.tar ${NGB_HOME}/
 RUN cd ${NGB_HOME} && \ 
-		tar -xvf ngb-cli.tar && \
+		tar -xf ngb-cli.tar && \
 		rm ngb-cli.tar && \
 		cd ${NGB_HOME}/ngb-cli/bin && \
 		chmod +x ngb
