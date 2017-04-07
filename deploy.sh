@@ -11,11 +11,17 @@ CORE_LATEST=${DOCKERHUB_REPO}:latest
 
 DEMO_REL=${CORE_REL}-demo
 DEMO_LATEST=${CORE_LATEST}-demo
+DEMO_CONTAINER="ngbdemo"
 
 docker tag ngb:latest ${CORE_REL}
 docker tag ngb:latest ${CORE_LATEST}
 
-# TODO: build demo image
+echo "Building demo image"
+#docker run -d --name ${DEMO_CONTAINER} ${CORE_REL}
+#docker cp init_demo_data.sh ${DEMO_CONTAINER}:/opt/init_demo_data.sh
+#docker exec ${DEMO_CONTAINER} /bin/bash -c "/opt/init_demo_data.sh"
+#docker commit ${DEMO_CONTAINER} ${DEMO_REL}
+#docker tag ${DEMO_REL} ${DEMO_LATEST}
 
 docker login -p ${DOCKERHUB_PASS} -u ${DOCKERHUB_LOGIN}
 
