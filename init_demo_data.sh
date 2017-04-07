@@ -1,6 +1,7 @@
-until $(curl --output /dev/null --silent --head --fail http://localhost:8080/catgenome); do
+printf 'waiting for NGB to start'
+until $(wget http://localhost:8080/catgenome); do
     printf '.'
-    sleep 5
+    sleep 3
 done
 
 cd /opt
