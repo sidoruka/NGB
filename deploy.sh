@@ -17,11 +17,11 @@ docker tag ngb:latest ${CORE_REL}
 docker tag ngb:latest ${CORE_LATEST}
 
 echo "Building demo image"
-#docker run -d --name ${DEMO_CONTAINER} ${CORE_REL}
-#docker cp init_demo_data.sh ${DEMO_CONTAINER}:/opt/init_demo_data.sh
-#docker exec ${DEMO_CONTAINER} /bin/bash -c "/opt/init_demo_data.sh"
-#docker commit ${DEMO_CONTAINER} ${DEMO_REL}
-#docker tag ${DEMO_REL} ${DEMO_LATEST}
+docker run -d --name ${DEMO_CONTAINER} ${CORE_REL}
+docker cp init_demo_data.sh ${DEMO_CONTAINER}:/opt/init_demo_data.sh
+docker exec ${DEMO_CONTAINER} /bin/bash -c "/opt/init_demo_data.sh"
+docker commit ${DEMO_CONTAINER} ${DEMO_REL}
+docker tag ${DEMO_REL} ${DEMO_LATEST}
 
 docker login -p ${DOCKERHUB_PASS} -u ${DOCKERHUB_LOGIN}
 
@@ -30,6 +30,12 @@ docker push ${CORE_REL}
 
 echo "Pushing ${CORE_LATEST}"
 docker push ${CORE_LATEST}
+
+echo "Pushing ${DEMO_REL}"
+docker push ${DEMO_REL}
+
+echo "Pushing ${DEMO_LATEST}"
+docker push ${DEMO_LATEST}
 
 # Demo server - binaries
 echo "Publishing binaries to a demo server"
