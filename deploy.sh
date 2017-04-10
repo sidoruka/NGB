@@ -32,7 +32,17 @@ echo "Pushing ${CORE_LATEST}"
 docker push ${CORE_LATEST}
 
 echo "Pushing ${DEMO_REL}"
-docker push ${DEMO_REL}
+nohup docker push ${DEMO_REL} & 
+pid=$!
+
+FINISHED_PUSHING=0
+until FINISHED_PUSHING
+do
+    printf '.'
+    sleep 10
+    ps -p $pid > /dev/null
+    FINISHED_PUSHING=$?
+done
 
 echo "Pushing ${DEMO_LATEST}"
 docker push ${DEMO_LATEST}
