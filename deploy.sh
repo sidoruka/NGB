@@ -9,19 +9,19 @@ echo "Deploying to DockerHub"
 CORE_REL=${DOCKERHUB_REPO}:${NGB_VERSION}-release
 CORE_LATEST=${DOCKERHUB_REPO}:latest
 
-DEMO_REL=${CORE_REL}-demo
-DEMO_LATEST=${CORE_LATEST}-demo
-DEMO_CONTAINER="ngbdemo"
-
 docker tag ngb:latest ${CORE_REL}
 docker tag ngb:latest ${CORE_LATEST}
 
-echo "Building demo image"
-docker run -d --name ${DEMO_CONTAINER} ${CORE_REL}
-docker cp init_demo_data.sh ${DEMO_CONTAINER}:/opt/init_demo_data.sh
-docker exec ${DEMO_CONTAINER} /bin/bash -c "/opt/init_demo_data.sh"
-docker commit ${DEMO_CONTAINER} ${DEMO_REL}
-docker tag ${DEMO_REL} ${DEMO_LATEST}
+# Not building demo images, as travis timeouts on dockerhub push
+#DEMO_REL=${CORE_REL}-demo
+#DEMO_LATEST=${CORE_LATEST}-demo
+#DEMO_CONTAINER="ngbdemo"
+#echo "Building demo image"
+#docker run -d --name ${DEMO_CONTAINER} ${CORE_REL}
+#docker cp init_demo_data.sh ${DEMO_CONTAINER}:/opt/init_demo_data.sh
+#docker exec ${DEMO_CONTAINER} /bin/bash -c "/opt/init_demo_data.sh"
+#docker commit ${DEMO_CONTAINER} ${DEMO_REL}
+#docker tag ${DEMO_REL} ${DEMO_LATEST}
 
 docker login -p ${DOCKERHUB_PASS} -u ${DOCKERHUB_LOGIN}
 
@@ -31,21 +31,20 @@ docker push ${CORE_REL}
 echo "Pushing ${CORE_LATEST}"
 docker push ${CORE_LATEST}
 
-echo "Pushing ${DEMO_REL}"
-nohup docker push ${DEMO_REL} & 
-pid=$!
-
-FINISHED_PUSHING=0
-until FINISHED_PUSHING
-do
-    printf '.'
-    sleep 10
-    ps -p $pid > /dev/null
-    FINISHED_PUSHING=$?
-done
-
-echo "Pushing ${DEMO_LATEST}"
-docker push ${DEMO_LATEST}
+# Not building demo images, as travis timeouts on dockerhub push
+#echo "Pushing ${DEMO_REL}"
+#nohup docker push ${DEMO_REL} & 
+#pid=$!
+#FINISHED_PUSHING=0
+#until FINISHED_PUSHING
+#do
+#    printf '.'
+#    sleep 10
+#    ps -p $pid > /dev/null
+#    FINISHED_PUSHING=$?
+#done
+#echo "Pushing ${DEMO_LATEST}"
+#docker push ${DEMO_LATEST}
 
 # Demo server - binaries
 echo "Publishing binaries to a demo server"
@@ -88,6 +87,7 @@ sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \
 "mv ${DOCS_VERSION} ${DOCS_LATEST} &&" \
 "mv ${CLI_VERSION} ${CLI_LATEST}"
 
+# Not building demo images, as travis timeouts on dockerhub push
 # Demo server - docker
 #echo "Removing all running dockers and starting ${DEMO_REL}"
 #sudo ssh ${DEMO_USER}@${DEMO_SRV} -o StrictHostKeyChecking=no -i demo.pem \ 
