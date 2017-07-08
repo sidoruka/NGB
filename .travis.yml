@@ -2,12 +2,5 @@ sudo: required
 os:
   - linux
 dist: trusty
-install: 
-    - pip install mkdocs
-    - pip install mkdocs-material
 script: 
-  - ./gradlew buildJar buildWar buildCli buildDoc buildDocker -PnoTest
-after_success:
-  - chmod 777 deploy.sh
-  - chmod 777 init_demo_data.sh
-  - ./deploy.sh
+  - ./gradlew buildCli
