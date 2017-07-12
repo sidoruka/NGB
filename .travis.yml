@@ -4,3 +4,6 @@ os:
 dist: trusty
 script: 
   - ./gradlew buildCli
+  - ./gradlew jacocoTestReport
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

@@ -95,3 +95,9 @@ task regression(type: Exec) {
     args 'script\\regression_test.sh'
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
